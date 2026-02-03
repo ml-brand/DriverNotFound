@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 Driver Not Found — пост #38</title>
+  <meta name="description" content=" MoDAR: Using Motion Forecasting for 3D Object Detection in Point Cloud Sequences   Сегодня разберём  статью  на стыке perception и BL (behavior layer). Объединив очень разные элементы восприятия (per" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/DriverNotFound/static/posts/38.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="404 Driver Not Found — пост #38" />
+  <meta property="og:description" content=" MoDAR: Using Motion Forecasting for 3D Object Detection in Point Cloud Sequences   Сегодня разберём  статью  на стыке perception и BL (behavior layer). Объединив очень разные элементы восприятия (per" />
+  <meta property="og:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/38_480.webp" />
+  <meta property="og:image:alt" content="404 Driver Not Found" />
+  <meta property="article:published_time" content="2026-01-26T12:01:13+00:00" />
+  <meta property="article:author" content="404 Driver Not Found" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/38_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=38" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="38">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-01-26T12:01:13+00:00">2026-01-26 12:01 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>MoDAR: Using Motion Forecasting for 3D Object Detection in Point Cloud Sequences</strong><br><br>Сегодня разберём <a href="https://arxiv.org/abs/2306.03206" rel="nofollow noopener noreferrer">статью</a> на стыке perception и BL (behavior layer). Объединив очень разные элементы восприятия (perception) и предсказания (prediction) робота, команда Waymo улучшила обнаружение 3D-объектов для детекторов, которые работают с облаками точек и их последовательностями.<br><br>В чём проблема? Современные системы плохо справляются с обнаружением перекрытых и удалённых объектов. Обработка множества лидарных кадров требует огромных ресурсов. Можно было бы фьюзить облака точек на уровне объектов,  потому что это дешевле с точки зрения вычислений. Но тогда возникают проблемы с выравниванием (alignment). <br><br>Система MoDAR вместо прямой обработки всех кадров использует прогнозирование движения как дополнительную модальность. Алгоритм создаёт виртуальные точки с информацией о предсказанных позициях объектов из прошлых и будущих кадров. <br><br>Способ, который придумали авторы, помогает прокачать качество обработки облаков. На основе <strong>предсказаний траекторий</strong> из BL они создали для детектора виртуальную модальность под названием <strong>MoDAR</strong> (по аналогии с LiDAR). <br><br>Точки MoDAR — это центры объектов по предсказаниям из прошлого в настоящее (онлайн) и из будущего в настоящее (офлайн). Они образуют новую легковесную модальность: число точек, полученных из временного контекста 18 секунд (9 из прошлого + 9 из будущего) меньше, чем в одном лидарном фрейме. <br><br>Полный флоу решения — на схеме. Авторы используют два 3D-детектора: <a href="https://t.me/DriverNotFound/30" rel="nofollow noopener noreferrer">CenterPoint</a> и SWFormer. В качестве модели предсказания движения выбрали MultiPath++, обученный на Waymo Open Motion Dataset.<br><br>На 3-frame SWFormer + 18 секунд MoDAR удалось существенно повысить качество (mAPH) в сложных кейсах (L2-срез на Waymo Open Dataset). При этом практически SoTA-результат не требует значительных дополнительных вычислительных затрат. <br><br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/38_480.webp" srcset="../../assets/media/thumbs/38_480.webp 480w, ../../assets/media/38.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="38" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>630 просмотров · 27 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/38" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./38.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./39.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./37.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 38, "media": [{"kind": "photo", "path": "../../assets/media/38.jpg", "thumb": "../../assets/media/thumbs/38_480.webp", "size": 57601, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-02-03T14:56:06Z", "posts_count": 19, "last_seen_message_id": 39, "stats": {"new": 32, "updated": 0, "media_downloaded": 29}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

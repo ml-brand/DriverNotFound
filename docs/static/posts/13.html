@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 Driver Not Found — пост #13</title>
+  <meta name="description" content=" UnO + GASP   Сегодня обсудим две похожие и крайне интересные статьи на довольно редкую в сфере автономного транспорта тему претрейна —  UnO: Unsupervised Occupancy Fields for Perception and Forecasti" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/DriverNotFound/static/posts/13.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="404 Driver Not Found — пост #13" />
+  <meta property="og:description" content=" UnO + GASP   Сегодня обсудим две похожие и крайне интересные статьи на довольно редкую в сфере автономного транспорта тему претрейна —  UnO: Unsupervised Occupancy Fields for Perception and Forecasti" />
+  <meta property="og:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/13_480.webp" />
+  <meta property="og:image:alt" content="404 Driver Not Found" />
+  <meta property="article:published_time" content="2025-11-06T08:49:58+00:00" />
+  <meta property="article:author" content="404 Driver Not Found" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/13_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=13" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="13">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-11-06T08:49:58+00:00">2025-11-06 08:49 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>UnO + GASP</strong><br><br>Сегодня обсудим две похожие и крайне интересные статьи на довольно редкую в сфере автономного транспорта тему претрейна — <a href="https://arxiv.org/abs/2406.08691" rel="nofollow noopener noreferrer">UnO: Unsupervised Occupancy Fields for Perception and Forecasting</a> и <a href="https://arxiv.org/abs/2503.15672" rel="nofollow noopener noreferrer">GASP: Unifying Geometric and Semantic Self-Supervised Pre-training for Autonomous Driving</a>.<br><br>Первая статья вышла в июне 2024 года. Её авторы, коллеги из Waabi, вдохновились идеями из мира LLM и придумали, как запускать SSL-претрейн BEV-like-энкодеров. Для этого они:<br><br>1. Прогоняют сцену через энкодер, получая BEV.<br>2. Затем генерируют query:<br>    2.1 Луч лидара летит от ego до объекта. Если на пути луча нет препятствий, значит для любой точки на этом отрезке occupancy равняется нулю (можно ехать).<br>    2.2 Когда луч лидара попадает в объект, в этой точке (плюс eps за эту точку) occupancy равняется единице.<br>3. Через Deformable Attention подтягивают фичи с BEV для каждой точки из пункта 2 и решают задачу классификации occupancy.<br>4. Query можно генерировать из «будущих кадров», то есть предсказывать occupancy для точек x, y, z, t.<br><br>В результате энкодер выучивает какие-то разумные фичи сцены и понимает, куда движутся объекты в сцене. Авторы также делают SFT для семантической сегментации BEV и показывают, что их претрейн даёт хорошие результаты, особенно при нехватке размеченных данных.<br><br>В марте 2025-го другая группа исследователей выпускает статью о развитии метода — GASP. Здесь авторы добавляют ещё несколько UnO-like-голов. В этом подходе для каждой точки query можно предсказывать не только occupancy, но и DINO-фичи, которые проецируются с картинки на лидарную точку. Таким образом семантика «проливается» в претрейн.<br><br>Кроме того, зная GT-траекторию, можно сэмплировать из неё точки (а также некоторый радиус) и задавать этим точкам класс 1, а остальным — 0, затем решая классификацию вида «хотим ли мы туда ехать».<br><br>Далее авторы делают SFT на тех же задачах, что и в UnO, получая ещё более качественные результаты. GASP — по сути тот же UnO, но быстрее, выше, сильнее.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Денис Глазов<br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/13_480.webp" srcset="../../assets/media/thumbs/13_480.webp 480w, ../../assets/media/13.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="13" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>837 просмотров · 36 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/13" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./13.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./14.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./12.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 13, "media": [{"kind": "photo", "path": "../../assets/media/13.jpg", "thumb": "../../assets/media/thumbs/13_480.webp", "size": 116664, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-02-03T14:56:06Z", "posts_count": 19, "last_seen_message_id": 39, "stats": {"new": 32, "updated": 0, "media_downloaded": 29}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

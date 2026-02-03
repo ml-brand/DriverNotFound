@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 Driver Not Found — пост #7</title>
+  <meta name="description" content=" Direct Post-Training Preference Alignment for Multi-Agent Motion Generation Models Using Implicit Feedback from Pre-training Demonstrations   Авторы  статьи  предложили новый подход к дообучению traf" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/DriverNotFound/static/posts/7.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="404 Driver Not Found — пост #7" />
+  <meta property="og:description" content=" Direct Post-Training Preference Alignment for Multi-Agent Motion Generation Models Using Implicit Feedback from Pre-training Demonstrations   Авторы  статьи  предложили новый подход к дообучению traf" />
+  <meta property="og:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/7_480.webp" />
+  <meta property="og:image:alt" content="404 Driver Not Found" />
+  <meta property="article:published_time" content="2025-10-16T07:47:21+00:00" />
+  <meta property="article:author" content="404 Driver Not Found" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/7_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=7" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="7">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-10-16T07:47:21+00:00">2025-10-16 07:47 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Direct Post-Training Preference Alignment for Multi-Agent Motion Generation Models Using Implicit Feedback from Pre-training Demonstrations</strong><br><br>Авторы <a href="https://arxiv.org/abs/2503.20105" rel="nofollow noopener noreferrer">статьи</a> предложили новый подход к дообучению traffic prediction-моделей без участия человека. Вместо ручной разметки или явной reward-функции они получают скрытые предпочтения (implicit preferences) из экспертных данных (GT). <br><br>С помощью distance-функции исследователи измеряют, насколько поведение модели отклоняется от поведения эксперта, и на основе этого ранжируют сгенерированные траектории. В итоге формируются пары более предпочтительных и менее предпочтительных траекторий, по которым обучается модель, увеличивая относительную вероятность «лучших» траекторий по сравнению с базовой (pretrained) моделью.<br><br>В качестве distance-функции авторы используют optimal transport на признаковом представлении траекторий — смотрят на разницу между распределениями фич агентов на каждом тике траектории, причём вектора суммируются таким образом, чтобы добиться инвариантности времени — получается распределение фич, которое работает и в будущем, и в прошлом. Фичи агентов извлекаются из траектории путём occupancy measure matching.<br><br>Для дообучения модели используется contrastive learning, вдохновлённое DPO, но адаптированное под задачи планирования движения. В отличие от DPO, предпочтения не аннотированы вручную, а определяются по близости траектории к GT (ground truth).<br><br>В качестве референсной модели взята Motion LM на 1М, и после дообучения итоговая модель показывает лучшие результаты, чем референсная. При этом на Waymo Open Sim Agents Challenge результаты эксперимента не лучше, чем SOTA больших моделей с размером 10-100М наподобие SMART или BehaviorGPT. <br><br>Отдельно авторы показывают, что дообучать модель на парах GT vs generated — это не очень хорошо, потому что, имея дело с траекториями из разных распределений, дискриминатор слишком хорошо выучивает косвенные признаки, например, волнообразность сгенерированной траектории, то есть не то, что нужно для решения задачи.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Алексей Найденов<br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/7_480.webp" srcset="../../assets/media/thumbs/7_480.webp 480w, ../../assets/media/7.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="7" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>923 просмотров · 15 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/7" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./7.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./11.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./4.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 7, "media": [{"kind": "photo", "path": "../../assets/media/7.jpg", "thumb": "../../assets/media/thumbs/7_480.webp", "size": 65585, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-02-03T14:56:06Z", "posts_count": 19, "last_seen_message_id": 39, "stats": {"new": 32, "updated": 0, "media_downloaded": 29}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
