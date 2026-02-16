@@ -2,13 +2,13 @@
   "title": "404 Driver Not Found",
   "username": "DriverNotFound",
   "channel": "DriverNotFound",
-  "last_sync_utc": "2026-02-16T10:35:34Z",
+  "last_sync_utc": "2026-02-16T11:29:46Z",
   "posts_count": 22,
   "last_seen_message_id": 42,
   "stats": {
-    "new": 14,
-    "updated": 17,
-    "media_downloaded": 14
+    "new": 13,
+    "updated": 22,
+    "media_downloaded": 13
   },
   "avatar": "assets/channel_avatar.jpg",
   "meta_schema_version": "1.0.0",
