@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 Driver Not Found — пост #55</title>
+  <meta name="description" content=" Gigaflow: Robust Autonomy Emerges from Self-Play   Сегодня разберём  статью  о self-play-симуляторе для reinforcement learning (RL).   Авторы показывают, что с помощью симуляции можно относительно дё" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/DriverNotFound/static/posts/55.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="404 Driver Not Found — пост #55" />
+  <meta property="og:description" content=" Gigaflow: Robust Autonomy Emerges from Self-Play   Сегодня разберём  статью  о self-play-симуляторе для reinforcement learning (RL).   Авторы показывают, что с помощью симуляции можно относительно дё" />
+  
+  <meta property="article:published_time" content="2026-04-27T08:55:18+00:00" />
+  <meta property="article:author" content="404 Driver Not Found" />
+  <meta name="twitter:card" content="summary" />
+  
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=55" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="55">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-04-27T08:55:18+00:00">2026-04-27 08:55 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Gigaflow: Robust Autonomy Emerges from Self-Play</strong><br><br>Сегодня разберём <a href="https://arxiv.org/abs/2502.03349" rel="nofollow noopener noreferrer">статью</a> о self-play-симуляторе для reinforcement learning (RL). <br><br>Авторы показывают, что с помощью симуляции можно относительно дёшево обучить простую модель, достигающую SoTA-результатов на большинстве closed-loop-бенчмарков. <br><br>Ключевая идея — добиться необходимого поведения можно и без ground-truth-данных. То есть, вместо разметки и записанных траекторий можно просто дать агентам взаимодействовать друг с другом в большом количестве сцен. У Gigaflow достаточно быстрый симулятор, чтобы за время обучения модель успевала «проехать» миллиарды виртуальных километров — это огромное разнообразие ситуаций.<br><br>Среда представляет собой набор карт, на которых случайным образом размещаются агенты (автомобили, велосипедисты, пешеходы). Для каждого агента задаётся последовательность waypoint’ов, через которые он должен проехать — каждая симуляция уникальна. <br><br>Чтобы приблизить симуляцию к реальности, вводят частичную наблюдаемость (агенты не знают полного состояния других участников), шум в состояниях и динамике. В результате без явного сценарного программирования возникают сложные взаимодействия: пробки, слияния потоков и нерегулируемые перекрёстки.<br><br>Одна и та же нейросетевая политика управляет всеми агентами в сцене. Чтобы разнообразить их поведение, используют кондишнинг: задают для каждого агента параметры, определяющие его тип, физические характеристики и предпочтения в поведении. <br><br>Обучение проводят с помощью алгоритма PPO. Функция награды включает несколько компонентов: достижение цели, соблюдение ПДД, комфортность вождения, а также штрафы за столкновения и другие нарушения. Интересная особенность — advantage filtering. Обучение фокусируется на наиболее информативных состояниях, в которых действие существенно влияет на результат, а простые ситуации постепенно отфильтровываются.<br><br>У Gigaflow лучшие метрики на трёх популярных бенчмарках: CARLA, nuPlan и Waymax. Причём все результаты получены в режиме zero-shot — модель не обучалась ни на одном из этих датасетов.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Тимур Петров <br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a></div>
+      <div class="actions">
+        <span>211 просмотров · 16 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/55" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./55.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./54.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 55, "media": []}];
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-04-27T10:49:33Z", "posts_count": 32, "last_seen_message_id": 55, "stats": {"new": 16, "updated": 23, "media_downloaded": 15}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
