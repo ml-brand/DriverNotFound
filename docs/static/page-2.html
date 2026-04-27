@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>404 Driver Not Found — статическая версия (стр. 2/2)</title>
   <meta name="description" content="Статическая версия зеркала Telegram-канала" />
-  <link rel="icon" href="../favicon.ico?v=2026-04-27T10%3A49%3A33Z" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=2026-04-27T10%3A49%3A33Z" />
-  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2026-04-27T10%3A49%3A33Z" />
+  <link rel="icon" href="../favicon.ico?v=2026-04-27T13%3A09%3A42Z" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=2026-04-27T13%3A09%3A42Z" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2026-04-27T13%3A09%3A42Z" />
 
   <link rel="stylesheet" href="../style.css" />
   <script src="../metrika.js"></script>
@@ -64,7 +64,7 @@
       </div>
       <div class="post-body"><strong>RefAV: Towards Planning-Centric Scenario Mining</strong><br><br>Пока беспилотник накатывает часы по дорогам города, он собирает огромный массив информации об окружающем мире и событиях в нём. Каждая система (а в автомобиле их сотни) пишет свои данные. А ещё — умеет поставлять дополнительную информацию о событии, которое описывает. Например, датчик безопасности отправляет водителю предупреждение, а в логи записывает, что причина алерта — неисправность в двигателе или превышение скорости. В итоге, когда машина возвращается на базу, мы получаем огромный, частично размеченный массив данных. Хранить его удобнее в виде структуры, которую грубо можно назвать табличкой. <br><br>Но как найти в этой табличке данные, действительно интересные для теста, обучения или аналитики? По-настоящему интересных событий среди записей не так уж много. К тому же, иногда требуется отыскать что-то совсем экстравагантное: например, как дети перебрасывают портфель над машинами, или уточка ведёт утят через дорогу и решила отдохнуть на полпути.<br><br>В сегодняшней <a href="https://arxiv.org/abs/2505.20981" rel="nofollow noopener noreferrer">статье</a> авторы пытаются найти «золотые» примеры событий в огромном массиве данных, оперируя полуразмеченым потоком, который записал автомобиль. <br><br>Идея в своей основе очень проста — давайте навайбкодим функцию, которая будет проверять, подходит ли нам записанное событие. Для начала авторы попробовали следующий бейзлайн: просили LLM посмотреть в записанные данные и сказать, подходят ли они к запросу с описанием. Подходят — добавляем в датасет, нет — пропускаем. <br><br>Эта механика задумывалась как слабая точка для начала, но удивила экспериментаторов тем, что показала отличный результат по восстановлению интересных сцен. Для теста метода использовали вручную размеченные данные. <br><br>Окончательный алгоритм посложнее: <br><br>1. Руками создать описания функций, которые помогут отфильтровать только подходящие данные из всех записей (например is_speed_limit(all_data)-&gt; bool). <br>2. Отдать LLM список этих функций и попросить построить из них более сложные — будущие фильтры для строчек из таблицы. <br>3. Полученной композитной функцией отфильтровать данные. Спойлер: останутся только интересные случаи!<br><br>Так авторы собрали RefAV — набор данных из 10 000 различных запросов на естественном языке, которые описывают сложные мультиагентные взаимодействия. Данные о планировании движения получены из 1000 журналов данных, записанных  датчиками Argoverse 2. <br><br>RefAV можно использовать в качестве тестового датасета для ваших пайплайнов сбора данных: ищите его и код фильтров <a href="http://cainand.github.io/RefAV/" rel="nofollow noopener noreferrer">на Github авторов</a>.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Дмитрий Хорошилов <br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a><div class="media"><img class="media-img" loading="lazy" src="../assets/media/thumbs/4_480.webp" srcset="../assets/media/thumbs/4_480.webp 480w, ../assets/media/4.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="4" data-image-index="0" /></div></div>
       <div class="actions">
-        <span>882 просмотров · 23 реакций</span>
+        <span>883 просмотров · 23 реакций</span>
         <span class="action-links"><a href="https://t.me/DriverNotFound/4" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="./posts/4.html">Открыть пост на сайте</a></span>
       </div>
     </article>
@@ -76,7 +76,7 @@
       </div>
       <div class="post-body">Заводите моторы — мы отправляемся в увлекательную поездку без водителя! Добро пожаловать в <strong>404 Driver Not Found</strong> — канал об ML в автономном транспорте, который ведут инженеры из Яндекса. Здесь вы найдёте разборы актуальных научных статей, обзоры профильных конференций, авторские подборки полезных материалов для ML’щика в сфере АТ и многое другое. <br><br>Подписывайтесь, чтобы строить свой маршрут в мире автономного транспорта вместе с нами и оставаться в курсе главных тенденций индустрии <tg-emoji emoji-id="5379596707476553803">🚗</tg-emoji></div>
       <div class="actions">
-        <span>802 просмотров · 30 реакций</span>
+        <span>803 просмотров · 30 реакций</span>
         <span class="action-links"><a href="https://t.me/DriverNotFound/2" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="./posts/2.html">Открыть пост на сайте</a></span>
       </div>
     </article>
@@ -109,7 +109,7 @@
 
   <script>
     window.__STATIC_POSTS = [{"id": 4, "media": [{"kind": "photo", "path": "../assets/media/4.jpg", "thumb": "../assets/media/thumbs/4_480.webp", "size": 129363, "mime": "image/jpeg", "name": null}]}, {"id": 2, "media": []}];
-    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-04-27T10:49:33Z", "posts_count": 32, "last_seen_message_id": 55, "stats": {"new": 16, "updated": 23, "media_downloaded": 15}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-04-27T13:09:42Z", "posts_count": 32, "last_seen_message_id": 55, "stats": {"new": 15, "updated": 32, "media_downloaded": 15}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
   </script>
   <script src="../common.js"></script>
   <script src="../static.js"></script>
