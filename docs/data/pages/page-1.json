@@ -136,7 +136,7 @@
       }
     ],
     "reactions": {
-      "total": 29,
+      "total": 30,
       "details": [
         {
           "count": 12,
@@ -153,6 +153,10 @@
         {
           "count": 2,
           "emoji": "🤩"
+        },
+        {
+          "count": 1,
+          "emoji": "💯"
         }
       ]
     }
