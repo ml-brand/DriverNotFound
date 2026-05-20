@@ -1393,7 +1393,7 @@
       "total": 30,
       "details": [
         {
-          "count": 12,
+          "count": 13,
           "emoji": "❤"
         },
         {
@@ -1407,10 +1407,6 @@
         {
           "count": 2,
           "emoji": "🤩"
-        },
-        {
-          "count": 1,
-          "emoji": "💯"
         }
       ]
     }
