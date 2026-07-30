@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 Driver Not Found — пост #94</title>
+  <meta name="description" content=" FutrTrack: A Camera-LiDAR Fusion Transformer for 3D Multiple Object Tracking   Сегодня разберём  работу  о модульном фреймворке для трёхмерного трекинга множества объектов. Подход основан на совместн" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/DriverNotFound/static/posts/94.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="404 Driver Not Found — пост #94" />
+  <meta property="og:description" content=" FutrTrack: A Camera-LiDAR Fusion Transformer for 3D Multiple Object Tracking   Сегодня разберём  работу  о модульном фреймворке для трёхмерного трекинга множества объектов. Подход основан на совместн" />
+  <meta property="og:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/94_480.webp" />
+  <meta property="og:image:alt" content="404 Driver Not Found" />
+  <meta property="article:published_time" content="2026-07-30T09:27:35+00:00" />
+  <meta property="article:author" content="404 Driver Not Found" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/94_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=94" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="94">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-07-30T09:27:35+00:00">2026-07-30 09:27 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>FutrTrack: A Camera-LiDAR Fusion Transformer for 3D Multiple Object Tracking</strong><br><br>Сегодня разберём <a href="https://arxiv.org/abs/2510.19981" rel="nofollow noopener noreferrer">работу</a> о модульном фреймворке для трёхмерного трекинга множества объектов. Подход основан на совместном использовании трёх типов информации:<br><br><tg-emoji emoji-id="5373319290650895500">📌</tg-emoji>BEV-фичей, извлечённых из данных камер и LiDAR;<br><tg-emoji emoji-id="5373319290650895500">📌</tg-emoji>detection queries, полученных при уточнении 3D-детекций;<br><tg-emoji emoji-id="5373319290650895500">📌</tg-emoji>track queries, перенесённых с предыдущего кадра.<br><br><strong>BEV-фичи</strong> вычисляют с помощью стандартного пайплайна BEVFusion. <br><br><strong>Detection queries </strong>получают из отдельного блока smoother. Это энкодер-декодерная архитектура, обученная на вспомогательной задаче временного уточнения исходных 3D-детекций. Энкодер собирает для каждой детекции контекст по нескольким кадрам. Декодер уточняет положение, размеры и класс объекта. <br><br>При этом в основной трекер передаются не сами итоговые детекции, а извлечённые из промежуточного слоя object-query-представления, сформированные в процессе решения задачи уточнения. Они и становятся detection queries текущего кадра.<br><br><strong>Track queries</strong> — промежуточные query-представления, сформированные основным трекинговым декодером на предыдущем кадре. Для подтверждённых активных треков модель сохраняет связанные с ними скрытые представления и передаёт их на следующий кадр. Таким образом, между кадрами переносятся не сами предсказанные боксы, а признаки, аккумулирующие информацию о положении, классе и идентичности каждого отслеживаемого объекта.<br><br>После независимого кодирования все три типа информации объединяются с помощью трансформера с multi-head attention. <strong>Track queries</strong> предыдущего кадра выступают в роли queries, <strong>detection queries</strong> текущего кадра — keys, а <strong>BEV-фичи</strong> — values. Благодаря этому модель сопоставляет активные треки с новыми детекциями и извлекает из BEV-представления необходимый пространственный и семантический контекст.<br><br>Декодер предсказывает обновлённые координаты, размеры, классы, идентификаторы и значения уверенности объектов. Промежуточные query-представления подтверждённых треков рекуррентно передаются на следующий кадр, поэтому непрерывность трекинга поддерживается без отдельной модели движения или фильтра.<br><br>Система заточена на модульность: можно менять способ получения BEV‑фич, а также подключать разные детекторы, обучая их независимо или совместно.<br><br>Авторы показывают, что FutrTrack превосходит предыдущие трансформерные методы по основным метрикам 3D-трекинга. При этом он всё ещё уступает SOTA-трекерам, основанным на гибридных пайплайнах, в которых обучаемые нейросетевые компоненты сочетаются с явно заданными моделями движения или ассоциации объектов.<br><br>Таким образом, полностью data-driven подход на основе трансформеров пока не демонстрирует устойчивого преимущества над системами, использующими геометрические и вероятностные ограничения. Особенно важными такие ограничения остаются в ситуациях с неполными или неоднозначными наблюдениями. Например, при длительных перекрытиях, пропусках детекций или в плотном трафике. <br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Олег Данилин<br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/94_480.webp" srcset="../../assets/media/thumbs/94_480.webp 480w, ../../assets/media/94.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="94" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>186 просмотров · 12 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/94" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./94.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./93.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 94, "media": [{"kind": "photo", "path": "../../assets/media/94.jpg", "thumb": "../../assets/media/thumbs/94_480.webp", "size": 111281, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-07-30T10:05:25Z", "posts_count": 51, "last_seen_message_id": 94, "stats": {"new": 36, "updated": 21, "media_downloaded": 36}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
