@@ -59,7 +59,7 @@
       </div>
       <div class="post-body"><strong>LISO: Lidar-only Self-Supervised 3D Object Detection</strong><br><br>Разметка 3D-боксов очень дорогая, долгая и плохо масштабируется. А сырых LiDAR-логов, наоборот, очень много. Сегодня разберём <a href="https://arxiv.org/abs/2403.07071" rel="nofollow noopener noreferrer">статью</a> о том, как использовать лидарные данные о движении объектов для разметки. <br><br>Сначала авторы готовят начальную разметку. Пайплайн такой:<br><br>1. По соседним LiDAR-кадрам считают ego motion — движение эго-агента. <br>2. Вычисляют scene flow — движение каждой точки между кадрами.<br>3. Вычитают ego motion из scene flow, чтобы получить residual motion — относительное движение.<br>4. Точки с ненулевым residual motion считают движущимися объектами.<br>5. Кластеризуют точки с ненулевым residual motion и собирают их в 3D-боксы.<br>6. Следят, как перемещаются боксы с течением времени, и чистят шум — так получается начальная разметка.<br><br>Следующий этап — итеративный self-training. Модель-детектор обучают на полученной разметке и прогоняют по начальной разметке, чтобы получить новые боксы. Потом снова строят треки, фильтруют шум, улучшают разметку и обновляют псевдо-GT. Обучение повторяется до тех пор, пока и псевдо-разметка и сама модель не улучшатся до требуемых пределов.<br><br>Хотя начальная разметка содержит только движущиеся объекты, детектор обучается на single-frame point cloud — поэтому постепенно начинает находить и способные двигаться объекты. Например, припаркованные машины. То есть движение используется только как bootstrap-сигнал, а дальше модель дообучается по геометрии сцены.<br><br>На момент публикации LISO стабильно обгонял другие self-supervised-подходы на WOD, KITTI, AV2 и nuScenes, хотя до fully-supervised-моделей ему ещё было куда расти.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Фарух Яушев<br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a></div>
       <div class="actions">
-        <span>366 просмотров · 19 реакций</span>
+        <span>367 просмотров · 19 реакций</span>
         <span class="action-links"><a href="https://t.me/DriverNotFound/96" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./96.html">Ссылка на этот пост</a></span>
       </div>
     </article>
@@ -86,7 +86,7 @@
 
   <script>
     window.__STATIC_POSTS = [{"id": 96, "media": []}];
-    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-08-14T22:01:05Z", "posts_count": 53, "last_seen_message_id": 96, "stats": {"new": 35, "updated": 0, "media_downloaded": 35}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-08-14T23:02:30Z", "posts_count": 53, "last_seen_message_id": 96, "stats": {"new": 35, "updated": 4, "media_downloaded": 35}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
   </script>
   <script src="../../common.js"></script>
   <script src="../../static.js"></script>
