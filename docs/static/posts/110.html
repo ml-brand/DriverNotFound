@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 Driver Not Found — пост #110</title>
+  <meta name="description" content=" Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving   Современные подходы к автономному вождению часто разделяют восприятие, предсказание и планирование " />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/DriverNotFound/static/posts/110.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="404 Driver Not Found — пост #110" />
+  <meta property="og:description" content=" Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving   Современные подходы к автономному вождению часто разделяют восприятие, предсказание и планирование " />
+  <meta property="og:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/110_480.webp" />
+  <meta property="og:image:alt" content="404 Driver Not Found" />
+  <meta property="article:published_time" content="2026-09-11T12:23:01+00:00" />
+  <meta property="article:author" content="404 Driver Not Found" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/110_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=110" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="110">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-09-11T12:23:01+00:00">2026-09-11 12:23 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving</strong><br><br>Современные подходы к автономному вождению часто разделяют восприятие, предсказание и планирование на отдельные модули. Но сейчас всё больше моделей переходят на end-to-end-предсказание с дообучением VLM под задачи вождения.<br><br>В частности, 31 августа команда Alibaba выпустила <a href="https://arxiv.org/abs/2609.00111" rel="nofollow noopener noreferrer">Qwen‑Drive‑1.0</a> — собственную модель в этой области. Это интересный релиз, потому что команда Qwen — один из безусловных лидеров в мире опенсорсных VLM, но это её первый заход в модели для вождения.<br><br>Авторы стартуют с Qwen3.5-4B и дообучают её, исходят из ключевых дизайн-принципов:<br><br><tg-emoji emoji-id="5289629688224841126">🔴</tg-emoji> Для длинного хвоста ситуаций нужно минимально менять исходную VLM так, чтобы она при этом продолжала справляться с общими темами.<br><tg-emoji emoji-id="5289629688224841126">🔴</tg-emoji> Для хорошего понимания сцены важны подзадачи 3D-реконструкции и разнообразный visual QA. <br><br>Чтобы достичь этого, предобученную VLM усилили двумя элементами: <br><br><tg-emoji emoji-id="5289629688224841126">🔴</tg-emoji> <strong>BEV-голова для персепшна</strong> извлекает явную 3D-информацию: детекция объектов, предсказание occupancy, сегментация карты.<br><tg-emoji emoji-id="5289629688224841126">🔴</tg-emoji><strong> Planning Expert</strong> генерирует будущую траекторию эго-автомобиля на основе представлений VLM, используя flow matching.<br><br>Qwen‑Drive‑1.0 обучают в четыре стадии: первые две — для персепшна, следующие — для планнера. <br><br><strong>1. Претрейн перспешна. </strong>Замораживают основную модель, обучают только новую BEV-голову на задачах 3D-детекции, occupancy, сегментации.<br><strong>2. Совместное обучение персепшна и VQA.</strong> Размораживают визуальный энкодер и VLM. Обучают модель одновременно на данных для 3D-персепшна и «вопросах-ответах» по сцене вождения. Секретный ингредиент — микс данных: 64,3% составляют задачи вождения, 26% — общие задачи VAQ, 9,7% — 3D-персепшн. Это позволяет приобрести навыки вождения, не забывая общие знания.<br><strong>3. Претрейн Planning Expert. </strong>Замораживают основную модель, обучают эксперта генерировать траектории.<br><strong>4. Обучение с подкреплением (RL).</strong> Финально дотюнивают Planning Expert. <br><br>Собственные сырые данные почти не собирали, но смогли адаптировать широкий набор из примерно 30 публичных датасетов (включая nuScenes, Waymo WOD-E2E, NAVSIM). Многое пришлось унифицировать: например в таксономии классов объединили все типы автомобилей. Геометрию пришлось сгладить, чтобы получить одинаковую растеризацию карты и идентичные траектории на 50 точек. Для VQA-вождения многие запросы переформулировали большими умными VLM.<br><br>В итоге свои гипотезы авторы частично подтвердили: общие знания почти не проседают, бенчмарки очень близки к исходным. Понимание дорожной ситуации значительно улучшилось. <br><br>При этом Qwen-Drive-1.0 справляется с вождением так же хорошо, как специализированные end-to-end-модели. Новая модель получила PDMS 90,7 на NavSim. Это хороший результат, хотя и не SOTA: end-to-end SimWAM <a href="https://arxiv.org/pdf/2608.07468" rel="nofollow noopener noreferrer">выбила 91,5</a>, а модель со скорингом CLOVER — <a href="https://arxiv.org/pdf/2605.15120" rel="nofollow noopener noreferrer">94,5</a>. <br><br>Интересно, что персепшн используют только для обучения, в инференсе планнера его нет. В аблэйшне авторы пробуют совсем исключить персепшн-стадию — планнер при этом работает не сильно хуже.<br><br>Модель выглядит симпатичной, авторы не бенч-максят, а честно валидируют общий подход.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Кирилл Федянин<br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/110_480.webp" srcset="../../assets/media/thumbs/110_480.webp 480w, ../../assets/media/110.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="110" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>282 просмотров · 17 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/110" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./110.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./100.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 110, "media": [{"kind": "photo", "path": "../../assets/media/110.jpg", "thumb": "../../assets/media/thumbs/110_480.webp", "size": 156277, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-09-11T16:47:10Z", "posts_count": 58, "last_seen_message_id": 110, "stats": {"new": 45, "updated": 41, "media_downloaded": 45}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
