@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 Driver Not Found — пост #115</title>
+  <meta name="description" content=" Scene-Adaptive Motion Planning with Explicit Mixture of Experts and Interaction-Oriented Optimization [1/2]   Сегодня начнëм разбирать  статью  от исследователей компании BYD. Авторы собрали в одну к" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/DriverNotFound/static/posts/115.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="404 Driver Not Found — пост #115" />
+  <meta property="og:description" content=" Scene-Adaptive Motion Planning with Explicit Mixture of Experts and Interaction-Oriented Optimization [1/2]   Сегодня начнëм разбирать  статью  от исследователей компании BYD. Авторы собрали в одну к" />
+  <meta property="og:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/115_480.webp" />
+  <meta property="og:image:alt" content="404 Driver Not Found" />
+  <meta property="article:published_time" content="2026-10-28T13:19:53+00:00" />
+  <meta property="article:author" content="404 Driver Not Found" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/DriverNotFound/assets/media/thumbs/115_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=115" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="115">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-10-28T13:19:53+00:00">2026-10-28 13:19 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Scene-Adaptive Motion Planning with Explicit Mixture of Experts and Interaction-Oriented Optimization [1/2]<br></strong><br>Сегодня начнëм разбирать <a href="https://arxiv.org/abs/2505.12311" rel="nofollow noopener noreferrer">статью</a> от исследователей компании BYD. Авторы собрали в одну конструкцию три идеи: <br><br><tg-emoji emoji-id="5289629688224841126">🔴</tg-emoji> MoE для разных сценариев, где каждый эксперт отвечает за свой тип дорожных ситуаций.<br><tg-emoji emoji-id="5289629688224841126">🔴</tg-emoji> Отдельные наборы якорных точек, полученные из водительских траекторий для каждого сценария.<br><tg-emoji emoji-id="5289629688224841126">🔴</tg-emoji> Дополнительный учёт взаимодействия эго с другими участниками движения при обучении.<br><br>Это позволило получить SOTA-результат на стандартном исследовательском бенчмарке nuPlan среди learning-based-методов без постобработки.<br><br><strong>Роутеры и эксперты</strong><br><br>В языковых моделях MoE применяют, прежде всего, ради вычислительной эффективности, а здесь — ставка на явную специализацию. Ключевая идея: в отличие от текстов, манёвры легко разбить правилами на семантически чёткие классы. Авторы выбрали семь таких классов: прямо, налево и направо на перекрёстке, прямо вне перекрёстка, разворот, кольцо и «другие».<br><br>Модель устроена привычно: энкодер сжимает сцену (машины вокруг, карту, состояние эго) в признаки, а декодер по ним генерирует варианты траектории. Эксперты встроены в слои декодера. Каждому обучающему примеру заранее присваивают тип, а роутер учится предсказывать его по эмбеддингу сцены.<br><br>Явная разметка позволяет напрямую контролировать, сколько данных получит каждый эксперт. Балансирующие лоссы, как в LLM, не нужны (они, по мнению авторов, могут портить обучение). Но проблему редких сценариев полностью это не решает: уникальных примеров разворотов, например, в датасете мало, и на них модель справляется хуже всего.<br><br><strong>Якоря<br></strong><br>Для каждого сценария конечные точки водительских траекторий на горизонте 8 секунд кластеризуют с помощью k-means в 24 якоря.<br><br>По сценарию, который определил роутер, берётся нужный комплект якорей. Их координаты кодируются и добавляются к обучаемым запросам декодера, и каждый запрос генерирует свою траекторию-кандидата. Заканчиваться строго в якоре она не обязана, якорь — лишь подсказка. Затем модель оценивает кандидатов и выбирает лучшего.<br><br>В следующем посте разберём, как устроено взаимодействие между агентами, и подведём итоги.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Григорий Плотников<br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/115_480.webp" srcset="../../assets/media/thumbs/115_480.webp 480w, ../../assets/media/115.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="115" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>159 просмотров · 11 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/115" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./115.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./114.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 115, "media": [{"kind": "photo", "path": "../../assets/media/115.jpg", "thumb": "../../assets/media/thumbs/115_480.webp", "size": 78498, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-10-28T13:34:48Z", "posts_count": 62, "last_seen_message_id": 115, "stats": {"new": 46, "updated": 30, "media_downloaded": 46}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

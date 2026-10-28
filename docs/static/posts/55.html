@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="../../style.css" />
   <script src="../../metrika.js"></script>
 </head>
-<body data-index-href="../index.html">
+<body data-index-href="../page-2.html">
   <header class="header">
     <div class="container">
       <div class="title-grid single-title">
@@ -30,7 +30,7 @@
         </a>
         <div class="grid-main">
           <div class="title-head">
-            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="back-link" href="../page-2.html">← Ко всем постам</a>
             <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">404 Driver Not Found</h1></a>
             <div class="hero-actions">
               <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+YX7Gf7GZpjtmMTYy" target="_blank" rel="noopener" >Подписаться</a>
@@ -59,8 +59,8 @@
       </div>
       <div class="post-body"><strong>Gigaflow: Robust Autonomy Emerges from Self-Play</strong><br><br>Сегодня разберём <a href="https://arxiv.org/abs/2502.03349" rel="nofollow noopener noreferrer">статью</a> о self-play-симуляторе для reinforcement learning (RL). <br><br>Авторы показывают, что с помощью симуляции можно относительно дёшево обучить простую модель, достигающую SoTA-результатов на большинстве closed-loop-бенчмарков. <br><br>Ключевая идея — добиться необходимого поведения можно и без ground-truth-данных. То есть, вместо разметки и записанных траекторий можно просто дать агентам взаимодействовать друг с другом в большом количестве сцен. У Gigaflow достаточно быстрый симулятор, чтобы за время обучения модель успевала «проехать» миллиарды виртуальных километров — это огромное разнообразие ситуаций.<br><br>Среда представляет собой набор карт, на которых случайным образом размещаются агенты (автомобили, велосипедисты, пешеходы). Для каждого агента задаётся последовательность waypoint’ов, через которые он должен проехать — каждая симуляция уникальна. <br><br>Чтобы приблизить симуляцию к реальности, вводят частичную наблюдаемость (агенты не знают полного состояния других участников), шум в состояниях и динамике. В результате без явного сценарного программирования возникают сложные взаимодействия: пробки, слияния потоков и нерегулируемые перекрёстки.<br><br>Одна и та же нейросетевая политика управляет всеми агентами в сцене. Чтобы разнообразить их поведение, используют кондишнинг: задают для каждого агента параметры, определяющие его тип, физические характеристики и предпочтения в поведении. <br><br>Обучение проводят с помощью алгоритма PPO. Функция награды включает несколько компонентов: достижение цели, соблюдение ПДД, комфортность вождения, а также штрафы за столкновения и другие нарушения. Интересная особенность — advantage filtering. Обучение фокусируется на наиболее информативных состояниях, в которых действие существенно влияет на результат, а простые ситуации постепенно отфильтровываются.<br><br>У Gigaflow лучшие метрики на трёх популярных бенчмарках: CARLA, nuPlan и Waymax. Причём все результаты получены в режиме zero-shot — модель не обучалась ни на одном из этих датасетов.<br><br>Разбор подготовил <tg-emoji emoji-id="5224192932302565805">❣️</tg-emoji> Тимур Петров <br><a href="http://t.me/DriverNotFound" rel="nofollow noopener noreferrer">404 driver not found</a></div>
       <div class="actions">
-        <span>1 217 просмотров · 24 реакций</span>
-        <span class="action-links"><a href="https://t.me/DriverNotFound/55" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./55.html">Ссылка на этот пост</a></span>
+        <span>1 218 просмотров · 24 реакций</span>
+        <span class="action-links"><a href="https://t.me/DriverNotFound/55" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-2.html">К списку постов</a> · <a href="./55.html">Ссылка на этот пост</a></span>
       </div>
     </article>
 
@@ -86,7 +86,7 @@
 
   <script>
     window.__STATIC_POSTS = [{"id": 55, "media": []}];
-    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-10-28T06:22:13Z", "posts_count": 61, "last_seen_message_id": 114, "stats": {"new": 45, "updated": 0, "media_downloaded": 45}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+    window.__STATIC_META = {"title": "404 Driver Not Found", "username": "DriverNotFound", "channel": "DriverNotFound", "last_sync_utc": "2026-10-28T13:34:48Z", "posts_count": 62, "last_seen_message_id": 115, "stats": {"new": 46, "updated": 30, "media_downloaded": 46}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
   </script>
   <script src="../../common.js"></script>
   <script src="../../static.js"></script>
